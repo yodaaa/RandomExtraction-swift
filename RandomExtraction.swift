@@ -5,6 +5,7 @@
 //  Created by yodaaa on 2019/01/01.
 //
 
+
 protocol RandomExtractionProtocol {
     var list: [String]  { get set }
     var overlap: Bool { get set }
@@ -29,11 +30,13 @@ class RandomExtraction: RandomExtractionProtocol {
         self.overlap = overlap
     }
     
+    // 配列からランダムで要素を１つ返す
     func getRandom() -> String {
         return list.randomElement()!
     }
     
-    
+    // 配列からランダムで要素をすべて返す
+    // String型のShufled
     func getAllRandom() -> [String] {
         var tempList: [String] = self.list
         var randomArray: [String] = []
@@ -52,6 +55,8 @@ class RandomExtraction: RandomExtractionProtocol {
         return randomArray
     }
     
+    //指定した数のランダムを抽出
+    // ※重複しない場合, [配列要素数 < 抽出する数が多い場合], 抽出するのは配列要素数まで
     func getNRandom(_ count: Int) -> [String] {
         var tempList: [String] = self.list
         var randomArray: [String] = []
@@ -77,15 +82,11 @@ class RandomExtraction: RandomExtractionProtocol {
         return randomArray
     }
     
-    
 }
-
-
 
 // testArray
 var testArray: [String] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]
 var testArrayEmpty: [String] = []
-
 
 var testRandom: RandomExtraction = RandomExtraction(testArray, true)
 var r1 = testRandom.getRandom()
@@ -100,6 +101,7 @@ print("r3: \(r3)")
 testRandom.overlap = false
 var r4 = testRandom.getNRandom(20)
 print("r4: \(r4)")
+
 
 
 
